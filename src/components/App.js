@@ -4,11 +4,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import axios from "axios";
 
 import "../css/App.css";
-import Photo from "./Photo";
+
 import SearchForm from "./SearchForm";
 import Nav from "./Nav";
-import NotFound from "./NotFound";
 import Home from "./Home";
+import Photo from "./Photo";
+import NotFound from "./NotFound";
 
 class App extends Component {
   state = {
@@ -16,42 +17,36 @@ class App extends Component {
     curGif: null,
   };
 
-  performSearch = (tag) => {
+  performFetch = (tag) => {
     this.setState({ curGif: tag });
-    axios
-      .get(
-        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=512dde26bd328d0f235a47c55d84e2ea&tags=${tag}&per_page=24&page=1&format=json&nojsoncallback=11`
-      )
-      .then((res) => {
-        this.setState({ data: res.data.photos.photo });
-      })
-      .catch((error) => console.log("Error with fetching data ", error));
+    console.log(tag);
   };
+
+  componentDidMount() {
+    if (this.state.curGif) {
+      this.performFetch(this.state.curGif);
+    }
+  }
 
   render() {
     return (
       <BrowserRouter>
         <div className="contianer">
-          <SearchForm onSearch={this.performSearch} />
+          <SearchForm onSearch={this.performFetch} />
           <Nav />
           <Switch>
+            <Route exact path="/" component={Home} />
             <Route
-              exact
-              path="/"
-              render={(matchProps) => (
-                <Home tag={this.state.curGif} match={matchProps} />
-              )}
-            />
-            <Route
-              path="/photo/:id?"
-              render={(matchProps) => (
-                <Photo
-                  title={this.state.curGif}
-                  fetchByTag={this.performSearch}
-                  matchProps={matchProps}
-                  data={this.state.data}
-                />
-              )}
+              path="/photo/:id"
+              render={(matchProps) => {
+                return (
+                  <Photo
+                    data={this.state.data}
+                    match={matchProps}
+                    fetchData={this.performFetch}
+                  />
+                );
+              }}
             />
             <Route component={NotFound} />
           </Switch>

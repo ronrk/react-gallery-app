@@ -10,6 +10,7 @@
 
 # production
 /build
+/src/co
 
 /src/data/config.js
 
