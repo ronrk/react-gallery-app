@@ -10,7 +10,7 @@ const Photo = ({ data, matchProps, fetchByTag }) => {
   console.log(gifsDisplay);
   return (
     <div className="photo-container">
-      <h2>{matchProps.match.params.id}</h2>
+      <h2>{matchProps.match.params.id.toUpperCase()} Gifs</h2>
       <ul>
         {data.map((gif, i) => {
           return (
