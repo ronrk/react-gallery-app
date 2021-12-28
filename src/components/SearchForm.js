@@ -13,7 +13,7 @@ export default class SearchForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onSearch(this.tag.value);
+    this.props.onSearch(this.query.value);
     e.currentTarget.reset();
   };
 
@@ -24,7 +24,7 @@ export default class SearchForm extends Component {
           type="search"
           onChange={this.onSearchChange}
           name="search"
-          ref={(input) => (this.tag = input)}
+          ref={(input) => (this.query = input)}
           placeholder="Search"
           required
         />
