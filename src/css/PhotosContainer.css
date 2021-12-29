@@ -5,6 +5,10 @@
   background-color: #d9f4fa;
 }
 
+.card {
+  background-color: #d9f4fa;
+}
+
 .photo-list {
   list-style: none;
   display: flex;

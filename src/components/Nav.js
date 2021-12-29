@@ -17,13 +17,13 @@ const Nav = (props) => {
     <nav className="main-nav">
       <ListGroup horizontal>
         <ListGroup.Item action variant="info">
-          <NavLink to={`/photo/cats`}>Cats</NavLink>
+          <NavLink to={`/cats`}>Cats</NavLink>
         </ListGroup.Item>
         <ListGroup.Item action variant="info">
-          <NavLink to="/photo/dogs">Dogs</NavLink>
+          <NavLink to="/dogs">Dogs</NavLink>
         </ListGroup.Item>
         <ListGroup.Item action variant="info">
-          <NavLink to="/photo/computers">Computers</NavLink>
+          <NavLink to="/computers">Computers</NavLink>
         </ListGroup.Item>
         <ListGroupItem variant="info">
           <SearchForm onSearch={props.onSearch} />

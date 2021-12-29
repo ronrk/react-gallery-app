@@ -34,7 +34,10 @@ class App extends Component {
   }
 
   //performSearch function that fetch interactive data from the api than update this.state than push the URL path
-  performSearch = (tag) => {
+  performSearch = (tag = "cats") => {
+    this.setState({
+      loading: true,
+    });
     axios
       .get(
         `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=512dde26bd328d0f235a47c55d84e2ea&tags=${tag}&per_page=24&page=1&format=json&nojsoncallback=11`
@@ -47,7 +50,7 @@ class App extends Component {
         });
       })
       .catch((error) => console.log("Error with fetching data ", error));
-    let path = `${this.props.match.path}photo/${tag}`;
+    let path = `${this.props.match.path}${tag}`;
     this.props.history.push(path);
   };
 
@@ -65,16 +68,16 @@ class App extends Component {
               )}
             />
             <Switch>
-              <Route
+              {/*               <Route
                 exact
                 path="/"
                 render={(matchProps) => (
                   <Home tag={this.state.curGif} match={matchProps} />
                 )}
-              />
+              /> */}
 
               <Route
-                path="/photo/:id"
+                path="/:id?"
                 render={(matchProps) => (
                   <PhotosContainer
                     tag={this.state.curGif}

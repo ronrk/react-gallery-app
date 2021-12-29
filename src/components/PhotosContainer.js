@@ -40,7 +40,7 @@ class PhotosContainer extends Component {
     return (
       <div className="photo-container">
         {this.props.loading ? (
-          <p>Loading...</p>
+          <h3>The Pages Is Loading, It May Takes A Couple Of Seconds...</h3>
         ) : (
           <Card>
             <h2>Photos of "{this.props.tag}"</h2>
