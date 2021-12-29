@@ -1,12 +1,18 @@
+//import React libraries and add-ons
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
 
+//import bootstrap-react add-on + elements
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 
+//import axios for fetching
 import axios from "axios";
 
+//import css
 import "../css/App.css";
+
+//import components
 import Header from "./Header";
 import PhotosContainer from "./PhotosContainer";
 import Nav from "./Nav";
@@ -14,11 +20,20 @@ import NotFound from "./NotFound";
 import Home from "./Home";
 
 class App extends Component {
+  //initializing App state
   state = {
     data: [],
     curGif: null,
+    loading: true,
   };
 
+  componentDidMount() {
+    if (this.state.data.length > 0) {
+      this.performSearch(this.state.curGif);
+    }
+  }
+
+  //performSearch function that fetch interactive data from the api than update this.state than push the URL path
   performSearch = (tag) => {
     axios
       .get(
@@ -28,6 +43,7 @@ class App extends Component {
         this.setState({
           data: res.data.photos.photo,
           curGif: tag,
+          loading: false,
         });
       })
       .catch((error) => console.log("Error with fetching data ", error));
@@ -35,6 +51,7 @@ class App extends Component {
     this.props.history.push(path);
   };
 
+  //render method
   render() {
     console.log(this.props);
     return (
@@ -57,13 +74,14 @@ class App extends Component {
               />
 
               <Route
-                path="/photo/:id?"
+                path="/photo/:id"
                 render={(matchProps) => (
                   <PhotosContainer
                     tag={this.state.curGif}
                     fetchByTag={this.performSearch}
                     match={matchProps}
                     data={this.state.data}
+                    loading={this.state.loading}
                   />
                 )}
               />

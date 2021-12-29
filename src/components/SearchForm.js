@@ -1,7 +1,10 @@
+//import React libraries and add-ons
 import React, { Component } from "react";
 
+//import css
 import "../css/SearchForm.css";
 
+//import bootstrap-react add-on + elements
 import { Button, Form, Row } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 

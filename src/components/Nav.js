@@ -1,10 +1,14 @@
+//import React libraries and add-ons
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+//import components
 import SearchForm from "./SearchForm";
 
+//import css
 import "../css/Nav.css";
 
+//import bootstrap-react add-on + elements
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
