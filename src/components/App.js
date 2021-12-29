@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
@@ -20,7 +20,6 @@ class App extends Component {
   };
 
   performSearch = (tag) => {
-    this.setState({ curGif: tag });
     axios
       .get(
         `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=512dde26bd328d0f235a47c55d84e2ea&tags=${tag}&per_page=24&page=1&format=json&nojsoncallback=11`
@@ -29,15 +28,23 @@ class App extends Component {
         this.setState({ data: res.data.photos.photo });
       })
       .catch((error) => console.log("Error with fetching data ", error));
+    this.setState({ curGif: tag });
+    let path = `${this.props.match.path}photo/${tag}`;
+    this.props.history.push(path);
   };
 
   render() {
+    console.log(this.props);
     return (
       <Container fluid>
         <BrowserRouter>
           <div className="contianer App">
             <Header />
-            <Nav onSearch={this.performSearch} />
+            <Route
+              render={(matchProps) => (
+                <Nav onSearch={this.performSearch} match={matchProps} />
+              )}
+            />
             <Switch>
               <Route
                 exact
@@ -68,4 +75,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

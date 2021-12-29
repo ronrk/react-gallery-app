@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 
 class Home extends Component {
-  componentDidUpdate() {
-    let path = `photo/${this.props.tag}`;
-    this.props.match.history.push(path);
-  }
+  componentDidUpdate() {}
 
   render() {
     return <h2>Home</h2>;
@@ -12,3 +9,6 @@ class Home extends Component {
 }
 
 export default Home;
+
+/*     let path = `photo/${this.props.tag}`;
+    this.props.match.history.push(path); */
