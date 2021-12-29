@@ -1,11 +1,14 @@
-import React from "react";
+import React, { Component } from "react";
 
-const Home = (props) => {
-  if (props.tag) {
-    let path = `${props.match.match.path}photo/${props.tag}`;
-    props.match.history.push(path);
+class Home extends Component {
+  componentDidUpdate() {
+    let path = `photo/${this.props.tag}`;
+    this.props.match.history.push(path);
   }
-  return <h2>Home</h2>;
-};
+
+  render() {
+    return <h2>Home</h2>;
+  }
+}
 
 export default Home;

@@ -1,30 +1,16 @@
 import React from "react";
 
-const Photo = ({ data, matchProps, fetchByTag }) => {
-  let gifsDisplay = data.map((gif, i) => {
-    return (
-      <Photo key={i} id={gif.id} server={gif.server} secret={gif.secret} />
-    );
-  });
-  fetchByTag(matchProps.match.params.id);
-  console.log(gifsDisplay);
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Card, Col, Row } from "react-bootstrap";
+
+const Photo = ({ id, server, secret }) => {
   return (
-    <div className="photo-container">
-      <h2>{matchProps.match.params.id.toUpperCase()} Gifs</h2>
-      <ul>
-        {data.map((gif, i) => {
-          return (
-            <li>
-              <img
-                src={`https://live.staticflickr.com/${gif.server}/${gif.id}_${gif.secret}.jpg`}
-              ></img>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <li>
+      <img
+        src={`https://live.staticflickr.com/${server}/${id}_${secret}.jpg`}
+      ></img>
+    </li>
   );
 };
 
 export default Photo;
-/*   */
