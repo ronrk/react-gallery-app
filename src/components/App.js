@@ -16,8 +16,6 @@ import "../css/App.css";
 import Header from "./Header";
 import PhotosContainer from "./PhotosContainer";
 import Nav from "./Nav";
-import NotFound from "./NotFound";
-import Home from "./Home";
 
 class App extends Component {
   //initializing App state
@@ -67,29 +65,18 @@ class App extends Component {
                 <Nav onSearch={this.performSearch} match={matchProps} />
               )}
             />
-            <Switch>
-              {/*               <Route
-                exact
-                path="/"
-                render={(matchProps) => (
-                  <Home tag={this.state.curGif} match={matchProps} />
-                )}
-              /> */}
-
-              <Route
-                path="/:id?"
-                render={(matchProps) => (
-                  <PhotosContainer
-                    tag={this.state.curGif}
-                    fetchByTag={this.performSearch}
-                    match={matchProps}
-                    data={this.state.data}
-                    loading={this.state.loading}
-                  />
-                )}
-              />
-              <Route component={NotFound} />
-            </Switch>
+            <Route
+              path="/:id?"
+              render={(matchProps) => (
+                <PhotosContainer
+                  tag={this.state.curGif}
+                  fetchByTag={this.performSearch}
+                  match={matchProps}
+                  data={this.state.data}
+                  loading={this.state.loading}
+                />
+              )}
+            />
           </div>
         </BrowserRouter>
       </Container>
