@@ -25,10 +25,12 @@ class App extends Component {
         `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=512dde26bd328d0f235a47c55d84e2ea&tags=${tag}&per_page=24&page=1&format=json&nojsoncallback=11`
       )
       .then((res) => {
-        this.setState({ data: res.data.photos.photo });
+        this.setState({
+          data: res.data.photos.photo,
+          curGif: tag,
+        });
       })
       .catch((error) => console.log("Error with fetching data ", error));
-    this.setState({ curGif: tag });
     let path = `${this.props.match.path}photo/${tag}`;
     this.props.history.push(path);
   };
@@ -55,7 +57,6 @@ class App extends Component {
               />
 
               <Route
-                exact
                 path="/photo/:id?"
                 render={(matchProps) => (
                   <PhotosContainer
