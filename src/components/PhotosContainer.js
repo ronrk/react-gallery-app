@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import Photo from "./Photo";
 
 //import css
-import "../css/PhotosContainer.css";
+//import "../css/PhotosContainer.css";
 
 //import bootstrap-react add-on + elements
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -42,10 +42,10 @@ class PhotosContainer extends Component {
         {this.props.loading ? (
           <h3>The Pages Is Loading, It May Takes A Couple Of Seconds...</h3>
         ) : (
-          <Card>
+          <div>
             <h2>Photos of "{this.props.tag}"</h2>
             <ul className="photo-list">{gifsDisplay}</ul>
-          </Card>
+          </div>
         )}
       </div>
     );

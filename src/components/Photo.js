@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../css/PhotosContainer.css";
+
 const Photo = ({ id, server, secret }) => {
   return (
     <li>

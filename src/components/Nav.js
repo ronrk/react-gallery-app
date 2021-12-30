@@ -25,9 +25,6 @@ const Nav = (props) => {
         <ListGroup.Item action variant="info">
           <NavLink to="/computers">Computers</NavLink>
         </ListGroup.Item>
-        <ListGroupItem variant="info">
-          <SearchForm onSearch={props.onSearch} />
-        </ListGroupItem>
       </ListGroup>
     </nav>
   );

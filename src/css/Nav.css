@@ -1,7 +1,40 @@
 .main-nav {
-  font-size: 2em;
 }
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
 a {
-  color: black;
   text-decoration: none;
+}
+
+.main-nav li {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.main-nav a {
+  display: block;
+  background-color: cadetblue;
+  border-radius: 3px;
+  padding: 5px;
+  color: #fff;
+}
+
+.main-nav .active,
+.main-nav a:hover,
+.search-form button:hover {
+  background-color: #275270;
+}
+
+.main-nav ul {
+  display: flex;
+  justify-content: center;
+}
+
+.main-nav li {
+  margin: 10px;
+  width: 100px;
 }

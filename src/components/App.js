@@ -13,6 +13,7 @@ import axios from "axios";
 import "../css/App.css";
 
 //import components
+import SearchForm from "./SearchForm";
 import Header from "./Header";
 import PhotosContainer from "./PhotosContainer";
 import Nav from "./Nav";
@@ -60,11 +61,13 @@ class App extends Component {
         <BrowserRouter>
           <div className="contianer App">
             <Header />
+            <SearchForm onSearch={this.performSearch} />
             <Route
               render={(matchProps) => (
                 <Nav onSearch={this.performSearch} match={matchProps} />
               )}
             />
+
             <Route
               path="/:id?"
               render={(matchProps) => (
