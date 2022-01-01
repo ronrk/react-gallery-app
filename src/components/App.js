@@ -12,6 +12,7 @@ import axios from "axios";
 //import css
 import "../css/App.css";
 
+import apiKey from "../data/config";
 //import components
 import SearchForm from "./SearchForm";
 import Header from "./Header";
@@ -26,11 +27,11 @@ class App extends Component {
     loading: true,
   };
 
-  componentDidMount() {
+  /*   componentDidMount() {
     if (this.state.data.length > 0) {
       this.performSearch(this.state.curGif);
     }
-  }
+  } */
 
   //performSearch function that fetch interactive data from the api than update this.state than push the URL path
   performSearch = (tag = "cats") => {
@@ -39,7 +40,7 @@ class App extends Component {
     });
     axios
       .get(
-        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=512dde26bd328d0f235a47c55d84e2ea&tags=${tag}&per_page=24&page=1&format=json&nojsoncallback=11`
+        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&page=1&format=json&nojsoncallback=11`
       )
       .then((res) => {
         this.setState({
@@ -55,19 +56,13 @@ class App extends Component {
 
   //render method
   render() {
-    console.log(this.props);
     return (
       <Container fluid>
         <BrowserRouter>
           <div className="contianer App">
             <Header />
             <SearchForm onSearch={this.performSearch} />
-            <Route
-              render={(matchProps) => (
-                <Nav onSearch={this.performSearch} match={matchProps} />
-              )}
-            />
-
+            <Nav />
             <Route
               path="/:id?"
               render={(matchProps) => (

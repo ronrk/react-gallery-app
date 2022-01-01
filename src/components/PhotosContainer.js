@@ -3,6 +3,7 @@ import React, { Component } from "react";
 
 //import components
 import Photo from "./Photo";
+import Home from "./Home";
 
 //import css
 //import "../css/PhotosContainer.css";
@@ -21,9 +22,11 @@ class PhotosContainer extends Component {
       this.props.fetchByTag(this.props.match.match.params.id);
   }
 
-  componentDidMount() {
-    this.props.fetchByTag(this.props.match.match.params.id);
-  }
+  /*   componentDidMount() {
+    if (this.props.tag) {
+      this.props.fetchByTag(this.props.match.match.params.id);
+    }
+  } */
 
   render() {
     //iterating over data and return a jsx list elements
@@ -39,13 +42,17 @@ class PhotosContainer extends Component {
     });
     return (
       <div className="photo-container">
-        {this.props.loading ? (
-          <h3>The Pages Is Loading, It May Takes A Couple Of Seconds...</h3>
+        {this.props.tag ? (
+          this.props.loading ? (
+            <h3>The Pages Is Loading, It May Takes A Couple Of Seconds...</h3>
+          ) : (
+            <div>
+              <h2>Photos of "{this.props.tag}"</h2>
+              <ul className="photo-list">{gifsDisplay}</ul>
+            </div>
+          )
         ) : (
-          <div>
-            <h2>Photos of "{this.props.tag}"</h2>
-            <ul className="photo-list">{gifsDisplay}</ul>
-          </div>
+          <Home />
         )}
       </div>
     );
@@ -53,3 +60,7 @@ class PhotosContainer extends Component {
 }
 
 export default PhotosContainer;
+
+// if loading === false and tag === false => <Home />
+// if loading === true => Loading
+// if tag=== true and loading === false => <Photo />
