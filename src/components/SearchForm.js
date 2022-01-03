@@ -21,6 +21,7 @@ export default class SearchForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.onSearch(this.tag.value);
+    this.props.pushUrl(this.tag.value);
     e.currentTarget.reset();
   };
 

@@ -1,6 +1,6 @@
 //import React libraries and add-ons
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
+import { BrowserRouter, Route, withRouter } from "react-router-dom";
 
 //import bootstrap-react add-on + elements
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -27,31 +27,33 @@ class App extends Component {
     loading: true,
   };
 
-  /*   componentDidMount() {
-    if (this.state.data.length > 0) {
-      this.performSearch(this.state.curGif);
-    }
-  } */
-
-  //performSearch function that fetch interactive data from the api than update this.state than push the URL path
-  performSearch = (tag = "cats") => {
-    this.setState({
-      loading: true,
-    });
-    axios
-      .get(
-        `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&page=1&format=json&nojsoncallback=11`
-      )
-      .then((res) => {
-        this.setState({
-          data: res.data.photos.photo,
-          curGif: tag,
-          loading: false,
-        });
-      })
-      .catch((error) => console.log("Error with fetching data ", error));
+  //push the search input to the URL path
+  pushUrl = (tag) => {
     let path = `${this.props.match.path}${tag}`;
     this.props.history.push(path);
+  };
+
+  //performSearch function that fetch interactive data from the api than update this.state
+  performSearch = (tag = "cats") => {
+    if (tag === null) {
+      return undefined;
+    } else {
+      this.setState({
+        loading: true,
+      });
+      axios
+        .get(
+          `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${tag}&per_page=24&page=1&format=json&nojsoncallback=11`
+        )
+        .then((res) => {
+          this.setState({
+            data: res.data.photos.photo,
+            curGif: tag,
+            loading: false,
+          });
+        })
+        .catch((error) => console.log("Error with fetching data ", error));
+    }
   };
 
   //render method
@@ -61,7 +63,7 @@ class App extends Component {
         <BrowserRouter>
           <div className="contianer App">
             <Header />
-            <SearchForm onSearch={this.performSearch} />
+            <SearchForm onSearch={this.performSearch} pushUrl={this.pushUrl} />
             <Nav />
             <Route
               path="/:id?"

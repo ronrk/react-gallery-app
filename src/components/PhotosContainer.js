@@ -22,12 +22,6 @@ class PhotosContainer extends Component {
       this.props.fetchByTag(this.props.match.match.params.id);
   }
 
-  /*   componentDidMount() {
-    if (this.props.tag) {
-      this.props.fetchByTag(this.props.match.match.params.id);
-    }
-  } */
-
   render() {
     //iterating over data and return a jsx list elements
     gifsDisplay = this.props.data.map((gif, i) => {

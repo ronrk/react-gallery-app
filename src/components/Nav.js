@@ -17,7 +17,7 @@ const Nav = (props) => {
     <nav className="main-nav">
       <ListGroup horizontal>
         <ListGroup.Item action variant="info">
-          <NavLink to={`/cats`}>Cats</NavLink>
+          <NavLink to="/cats">Cats</NavLink>
         </ListGroup.Item>
         <ListGroup.Item action variant="info">
           <NavLink to="/dogs">Dogs</NavLink>
